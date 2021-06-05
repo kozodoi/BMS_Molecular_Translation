@@ -1,6 +1,6 @@
-# Disclaimer
+# Disclaimer (05.06.20)
 
-This repository is work-in-progress. Visit soon to see the codes.
+This repository is work-in-progress. Visit soon to see the complete codes.
 
 
 
@@ -34,11 +34,11 @@ The project has the following structure:
 ## Reproducing solution
 
 The solution can be reproduced in the following steps:
-1. Downloading competition data and placing it in the `input/` folder.
-2. Running data augmentation notebooks to construct additional synthetic data.
-3. Running preprocessing notebooks to preprocess the data and define chemical tokenizers.
-4. Running training notebooks to obtain weights of base models.
-5. Running the ensembling notebook `notebook_10_ensembling.ipynb` to obtain the final predictions.
+1. Download competition data and place it in the `input/` folder.
+2. Run the data augmentation notebook `01_gen_extra_data.ipynb` to construct additional synthetic data.
+3. Run two preprocessing notebooks `02_preprocessing_v1.ipynb` and `03_preprocessing_v2.ipynb` to preprocess the data and define chemical tokenizers.
+4. Run seven training notebooks `04_model_v6.ipynb` - `10_model_v33.ipynb` to obtain weights of base models. 
+5. Run the ensembling notebook `11_ensembling.ipynb` to obtain the final predictions.
 
 All training notebooks have the same structure and differ in model/data parameters. Different versions are included to ensure reproducibility. To understand the training process, it is sufficient to go through the `codes/` folder and inspect one of the modeling notebooks. The ensembling code is also provided in this [Kaggle notebook](https://www.kaggle.com/kozodoi/47th-place-solution-bms-ensembling).
 
