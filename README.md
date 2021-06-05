@@ -38,7 +38,8 @@ The solution can be reproduced in the following steps:
 2. Run the data augmentation notebook `01_gen_extra_data.ipynb` to construct additional synthetic data.
 3. Run two preprocessing notebooks `02_preprocessing_v1.ipynb` and `03_preprocessing_v2.ipynb` to preprocess the data and define chemical tokenizers.
 4. Run seven training notebooks `04_model_v6.ipynb` - `10_model_v33.ipynb` to obtain weights of base models. 
-5. Run the ensembling notebook `11_ensembling.ipynb` to obtain the final predictions.
+5. Perform normalization of each model predictions using `11_normalization.ipynb`.
+6. Run the ensembling notebook `12_ensembling.ipynb` to obtain the final predictions.
 
 All training notebooks have the same structure and differ in model/data parameters. Different versions are included to ensure reproducibility. To understand the training process, it is sufficient to go through the `codes/` folder and inspect one of the modeling notebooks. The ensembling code is also provided in this [Kaggle notebook](https://www.kaggle.com/kozodoi/47th-place-solution-bms-ensembling).
 
