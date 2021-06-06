@@ -1,4 +1,95 @@
-####### SMART CROP
+##### SPLITTING INCHI
+
+def split_form(form):
+
+    '''
+    Source: https://www.kaggle.com/yasufuminakama/inchi-preprocess-2
+    '''
+
+    string = ''
+    for i in re.findall(r"[A-Z][^A-Z]*", form):
+        elem = re.match(r"\D+", i).group()
+        num = i.replace(elem, "")
+        if num == "":
+            string += f"{elem} "
+        else:
+            string += f"{elem} {str(num)} "
+    return string.rstrip(' ')
+
+def split_form2(form):
+
+    '''
+    Source: https://www.kaggle.com/yasufuminakama/inchi-preprocess-2
+    '''
+
+    string = ''
+    for i in re.findall(r"[a-z][^a-z]*", form):
+        elem = i[0]
+        num = i.replace(elem, "").replace('/', "")
+        num_string = ''
+        for j in re.findall(r"[0-9]+[^0-9]*", num):
+            num_list = list(re.findall(r'\d+', j))
+            assert len(num_list) == 1, f"len(num_list) != 1"
+            _num = num_list[0]
+            if j == _num:
+                num_string += f"{_num} "
+            else:
+                extra = j.replace(_num, "")
+                num_string += f"{_num} {' '.join(list(extra))} "
+        string += f"/{elem} {num_string}"
+    return string.rstrip(' ')
+
+PATTERN = re.compile('\d+|[A-Z][a-z]?|[^A-Za-z\d/]|/[a-z]')
+def l_split(s):
+    return ' '.join(re.findall(PATTERN,s))
+
+
+
+##### ATOM COUNT
+
+def get_atom_counts(dataframe):
+
+    '''
+    Source: https://www.kaggle.com/ttahara/bms-mt-chemical-formula-regression-training
+    '''
+
+    TARGETS = [
+    'B', 'Br', 'C', 'Cl',
+    'F', 'H', 'I', 'N',
+    'O', 'P', 'S', 'Si']
+    elem_regex = re.compile(r"[A-Z][a-z]?[0-9]*")
+    atom_regex = re.compile(r"[A-Z][a-z]?")
+    dgts_regex = re.compile(r"[0-9]*")
+    
+    atom_dict_list = []
+    for fml in tqdm(dataframe["InChI_1"].values):
+        atom_dict = dict()
+        for elem in elem_regex.findall(fml):
+            atom = dgts_regex.sub("", elem)
+            dgts = atom_regex.sub("", elem)
+            atom_cnt = int(dgts) if len(dgts) > 0 else 1
+            atom_dict[atom] = atom_cnt
+        atom_dict_list.append(atom_dict)
+
+    atom_df = pd.DataFrame(
+        atom_dict_list).fillna(0).astype(int)
+    atom_df = atom_df.sort_index(axis="columns")
+    for atom in TARGETS:
+        dataframe[atom] = atom_df[atom]
+    return dataframe
+
+
+
+##### IMAGE PATHS
+
+def get_train_file_path(image_id):
+    return "../input/train/{}/{}/{}/{}.png".format(
+        image_id[0], image_id[1], image_id[2], image_id 
+    )
+
+
+
+##### SMART CROP
 
 '''
 Adapted from https://www.kaggle.com/michaelwolff/bms-inchi-cropped-img-sizes-for-best-resolution
@@ -60,7 +151,7 @@ def smart_crop(img,
 
 
 
-####### PADDING
+##### PADDING
 
 def pad_image(image):
     
