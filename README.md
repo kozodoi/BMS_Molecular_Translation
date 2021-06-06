@@ -1,14 +1,10 @@
-# Disclaimer (05.06.20)
-
-This repository is work-in-progress. Visit soon to see the complete codes.
-
-
-
 # BMS Molecular Translation
 
 The top-5% solution to the [BMS Molecular Translation](https://www.kaggle.com/c/bms-molecular-translation) Kaggle Competition.
 
 ![sample](https://i.postimg.cc/sghDH7f9/Screen-2021-06-04-at-09-38-30.jpg)
+
+This repository is work-in-progress. Visit soon to see the complete codes.
 
 
 ## Summary
@@ -25,19 +21,29 @@ My solution is an ensemble of seven CNN-LSTM Encoder-Decoder models. All models 
 ## Project structure
 
 The project has the following structure:
-- `codes/`: `.py` scripts with training, inference and image processing functions
-- `notebooks/`: `.ipynb` Colab-friendly notebooks for data augmentation, training and inference
-- `input/`: input data (not included due to size constraints, can be downloaded [here](https://www.kaggle.com/c/bms-molecular-translation))
+- `codes/`: `.py` main scripts with data, model, training and inference modules
+- `notebooks/`: `.ipynb` Colab-friendly notebooks for data augmentation and model training
+- `input/`: input data (not included due to size constraints, can be downloaded [here](https://www.kaggle.com/c/bms-molecular-translation/data))
 - `output/`: model configurations, weights and figures exported from the notebooks
 
 
-## Reproducing solution
+## Working with the repo
 
-The solution can be reproduced in the following steps:
-1. Download competition data and place it in the `input/` folder.
-2. Run the data augmentation notebook `01_gen_extra_data.ipynb` to construct additional synthetic data.
-3. Run two preprocessing notebooks `02_preprocessing_v1.ipynb` and `03_preprocessing_v2.ipynb` to preprocess the data and define chemical tokenizers.
-4. Run seven training notebooks `04_model_v6.ipynb` - `10_model_v33.ipynb` to obtain weights of base models. 
+### Environment
+
+To work with the repo, I recommend to create a virtual Conda environment from the `environment.yml` file:
+```
+conda env create --name=bms --file environment.yml
+conda activate bms
+```
+
+### Reproducing solution
+
+The solution can then be reproduced in the following steps:
+1. Download [competition data](https://www.kaggle.com/c/bms-molecular-translation/data) and place it in the `input/` folder.
+2. Run `01_preprocessing_v1.ipynb` to preprocess the data and define chemical tokenizer.
+3. Run `02_gen_extra_data.ipynb` and `03_preprocessing_v2.ipynb` to construct additional synthetic images.
+4. Run training notebooks `04_model_v6.ipynb` - `10_model_v33.ipynb` to obtain weights of base models.
 5. Perform normalization of each model predictions using `11_normalization.ipynb`.
 6. Run the ensembling notebook `12_ensembling.ipynb` to obtain the final predictions.
 
