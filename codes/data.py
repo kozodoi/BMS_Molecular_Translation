@@ -152,6 +152,23 @@ class ImageTestData(Dataset):
 
 
 
+####### BATCH COLLATE HELPER FUNCTION
+
+''' 
+Borrowed from https://www.kaggle.com/yasufuminakama/inchi-resnet-lstm-with-attention-starter
+'''
+
+def bms_collate(batch):
+    imgs, labels, label_lengths = [], [], []
+    for data_point in batch:
+        imgs.append(data_point[0])
+        labels.append(data_point[1])
+        label_lengths.append(data_point[2])
+    labels = pad_sequence(labels, batch_first = True, padding_value = tokenizer.stoi['<pad>'])
+    return torch.stack(imgs), labels, torch.stack(label_lengths).reshape(-1, 1)
+
+
+
 ####### DATA PREP
 
 def get_data(df, fold, CFG, epoch = None):
