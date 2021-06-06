@@ -33,7 +33,7 @@ The project has the following structure:
 
 To work with the repo, I recommend to create a virtual Conda environment from the `environment.yml` file:
 ```
-conda env create --name=bms --file environment.yml
+conda env create --name bms --file environment.yml
 conda activate bms
 ```
 
