@@ -1,3 +1,12 @@
+import timm
+from timm.utils import *
+
+import torch
+from torch.nn.utils.rnn import pad_sequence, pack_padded_sequence
+from tqdm import tqdm
+
+
+
 ####### TRAINING
 
 def train_epoch(loader, 
@@ -8,6 +17,8 @@ def train_epoch(loader,
                 encoder_scheduler, 
                 decoder_scheduler,
                 criterion, 
+                autocast,
+                scaler,
                 epoch, 
                 CFG, 
                 device):
@@ -47,7 +58,7 @@ def train_epoch(loader,
         with torch.set_grad_enabled(True):
             
             # forward pass 
-            with amp_autocast():
+            with autocast():
                 features = encoder(inputs)
                 preds, caps_sorted, decode_lengths, alphas, sort_ind = decoder(features, labels, lengths)
                 targets = caps_sorted[:, 1:]

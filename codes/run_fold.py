@@ -1,6 +1,16 @@
+from utilities import *
+from data import get_loaders
+from optimizers import get_optimizer, get_scheduler
+from losses import get_losses
+from training import train_epoch
+from validation import valid_epoch
+import time
+import gc
+
+
 ####### WRAPPER FUNCTION
 
-def run_fold(fold, df_trn, df_val, CFG, encoder, decoder, device):
+def run_fold(fold, df_trn, df_val, CFG, encoder, decoder, tokenizer, autocast, scaler, device):
 
     ##### PREPARATIONS
     
@@ -20,7 +30,7 @@ def run_fold(fold, df_trn, df_val, CFG, encoder, decoder, device):
     decoder_scheduler = get_scheduler(CFG, decoder_optimizer)
     
     # get loaders
-    trn_loader, val_loader = get_loaders(df_trn, df_val, CFG)
+    trn_loader, val_loader = get_loaders(df_trn, df_val, tokenizer, CFG)
     
     # get valid labels
     val_labels = df_val['InChI'].values
@@ -42,12 +52,12 @@ def run_fold(fold, df_trn, df_val, CFG, encoder, decoder, device):
         epoch_start = time.time()
             
         # get losses            
-        trn_criterion, val_criterion = get_losses(CFG, device, epoch)
+        trn_criterion, val_criterion = get_losses(CFG, tokenizer, device, epoch)
         
         # update train loader
         if CFG['data_ext']:
             df_trn, _     = get_data(df, fold, CFG, epoch)  
-            trn_loader, _ = get_loaders(df_trn, df_val, CFG, epoch)
+            trn_loader, _ = get_loaders(df_trn, df_val, tokenizer, CFG, epoch)
 
 
         ### MODELING
@@ -62,6 +72,8 @@ def run_fold(fold, df_trn, df_val, CFG, encoder, decoder, device):
                                encoder_scheduler = encoder_scheduler,
                                decoder_scheduler = decoder_scheduler,
                                criterion         = trn_criterion, 
+                               autocast          = autocast,
+                               scaler            = scaler,
                                epoch             = epoch,
                                CFG               = CFG,
                                device            = device)
