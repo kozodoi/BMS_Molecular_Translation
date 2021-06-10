@@ -1,7 +1,14 @@
 ####### MODEL PREP
 
+from encoder import Encoder
+from decoder import _inflate, Attention, DecoderWithAttention, TopKDecoder
+import timm
+import torch
+import gc
+
+
 def get_model(CFG, device, pretrained = None):
-    
+        
     ##### INSTANTIATE MODEL
     
     # pretrained weights
@@ -18,7 +25,7 @@ def get_model(CFG, device, pretrained = None):
                                    embed_dim     = CFG['embed_dim'],
                                    encoder_dim   = CFG['encoder_dim'],
                                    decoder_dim   = CFG['decoder_dim'],
-                                   vocab_size    = len(tokenizer),
+                                   vocab_size    = CFG['len_tokenizer'],
                                    dropout       = CFG['dropout'],
                                    device        = device)
     
@@ -28,7 +35,7 @@ def get_model(CFG, device, pretrained = None):
         if pretrained != 'imagenet':
             
             # import states
-            states = torch.load(CFG['out_path'] + pretrained, map_location = torch.device('cpu'))
+            states = torch.load(pretrained, map_location = torch.device('cpu'))
             
             # load weights
             encoder.load_state_dict(states['encoder'])
