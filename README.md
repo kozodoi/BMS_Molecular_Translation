@@ -11,7 +11,7 @@ Organic chemists frequently draw molecular work using structural graph notations
 
 The goal of this project is to develop a deep learning based algorithm for chemical image captioning. In other words, the project aims at translating unlabeled chemical images into the text formula strings. To do that, I work with a large dataset of more than 4 million chemical images provided by Bristol-Myers Squibb.
 
-My solution is an ensemble of seven CNN-LSTM Encoder-Decoder models implemented in `PyTorch `. The table below summarizes the main architecture and training parameters. The solution reaches the test score of 1.31 Levenstein Distance and places in the top-5% of the competition leaderboard. The detailed summary is provided in [this writeup](https://www.kaggle.com/c/bms-molecular-translation/discussion/243845).
+My solution is an ensemble of seven CNN-LSTM Encoder-Decoder models implemented in `PyTorch`. The table below summarizes the main architecture and training parameters. The solution reaches the test score of 1.31 Levenstein Distance and places in the top-5% of the competition leaderboard. The detailed summary is provided in [this writeup](https://www.kaggle.com/c/bms-molecular-translation/discussion/243845).
 
 ![models](https://i.postimg.cc/cLrTp1Pc/Screen-2021-06-04-at-10-17-02.jpg)
 
