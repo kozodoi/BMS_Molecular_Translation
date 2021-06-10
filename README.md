@@ -2,9 +2,7 @@
 
 The top-5% solution to the [BMS Molecular Translation](https://www.kaggle.com/c/bms-molecular-translation) Kaggle Competition.
 
-![sample](https://i.postimg.cc/sghDH7f9/Screen-2021-06-04-at-09-38-30.jpg)
-
-This repository is work-in-progress. Visit soon to see the complete codes.
+![sample](https://i.postimg.cc/t4KqLMNC/inchi.jpg)
 
 
 ## Summary
