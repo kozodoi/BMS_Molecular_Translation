@@ -1,5 +1,9 @@
 ####### OPTIMIZERS
 
+import torch.optim as optim
+from adamp import AdamP
+from madgrad import MADGRAD
+
 def get_optimizer(CFG, model, eta):
                    
     # scale learning rates
@@ -33,6 +37,10 @@ def get_optimizer(CFG, model, eta):
 
 
 ####### SCHEDULERS
+
+from warmup_scheduler import GradualWarmupScheduler 
+from torch.optim import lr_scheduler
+from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts, ReduceLROnPlateau
 
 def get_scheduler(CFG, optimizer):
     

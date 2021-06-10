@@ -1,6 +1,21 @@
-####### DATASETS
+import albumentations as A
+from albumentations.pytorch import ToTensorV2
+import cv2
 
-from torch.utils.data import Dataset
+import torch
+from torch.utils.data import Dataset, DataLoader
+from torch.utils.data.sampler import RandomSampler, SequentialSampler, WeightedRandomSampler
+from torch.utils.data.distributed import DistributedSampler
+from torch.nn.utils.rnn import pad_sequence, pack_padded_sequence
+
+import numpy as np
+import pandas as pd
+
+from utilities import smart_print
+from augmentations import get_augs
+
+
+####### DATASETS
 
 class ImageData(Dataset):
     
@@ -158,7 +173,7 @@ class ImageTestData(Dataset):
 Borrowed from https://www.kaggle.com/yasufuminakama/inchi-resnet-lstm-with-attention-starter
 '''
 
-def bms_collate(batch):
+def bms_collate(batch, tokenizer):
     imgs, labels, label_lengths = [], [], []
     for data_point in batch:
         imgs.append(data_point[0])
@@ -210,7 +225,9 @@ def get_data(df, fold, CFG, epoch = None):
 
 ####### DATA LOADERS
 
-def get_loaders(df_train, df_valid, CFG, epoch = None):
+from utilities import *
+
+def get_loaders(df_train, df_valid, tokenizer, CFG, epoch = None):
 
     ##### EPOCH-BASED PARAMS
 
@@ -255,7 +272,7 @@ def get_loaders(df_train, df_valid, CFG, epoch = None):
                               shuffle          = True,
                               num_workers    = CFG['cpu_workers'],
                               drop_last      = True, 
-                              collate_fn     = bms_collate,
+                              collate_fn     = lambda b: bms_collate(b, tokenizer),
                               worker_init_fn = worker_init_fn,
                               pin_memory     = False)
     valid_loader = DataLoader(dataset     = valid_dataset, 

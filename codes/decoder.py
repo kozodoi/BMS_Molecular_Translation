@@ -1,5 +1,9 @@
 ####### RNN DECODER
 
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
 class Attention(nn.Module):
     '''
     Attention network for calculate attention value

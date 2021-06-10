@@ -1,5 +1,8 @@
 ####### AUGMENTATIONS
 
+import albumentations as A
+from albumentations.pytorch import ToTensorV2
+
 def get_augs(CFG, image_size = None, p_aug = None):
 
     # update epoch-based parameters

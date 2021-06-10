@@ -1,5 +1,7 @@
 ##### SPLITTING INCHI
 
+import re
+
 def split_form(form):
 
     '''
@@ -47,6 +49,10 @@ def l_split(s):
 
 ##### ATOM COUNT
 
+from tqdm import tqdm
+import pandas as pd
+import numpy as np
+
 def get_atom_counts(dataframe):
 
     '''
@@ -90,6 +96,8 @@ def get_train_file_path(image_id):
 
 
 ##### SMART CROP
+
+import cv2
 
 '''
 Adapted from https://www.kaggle.com/michaelwolff/bms-inchi-cropped-img-sizes-for-best-resolution

@@ -1,5 +1,8 @@
 ####### CNN ENCODER
 
+import torch.nn as nn
+import timm
+
 class Encoder(nn.Module):
     
     def __init__(self, backbone, num_channels = 3, pretrained = True):

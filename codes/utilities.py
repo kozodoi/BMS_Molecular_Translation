@@ -1,5 +1,11 @@
 ####### UTILITIES
 
+import os 
+import numpy as np
+import torch
+import random
+import Levenshtein
+
 # competition metric
 def get_score(y_true, y_pred):
     scores = []
