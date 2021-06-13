@@ -1,6 +1,6 @@
 # BMS Molecular Translation
 
-The top-5% solution to the [BMS Molecular Translation](https://www.kaggle.com/c/bms-molecular-translation) Kaggle Competition.
+Top-5% solution to the [BMS Molecular Translation](https://www.kaggle.com/c/bms-molecular-translation) Kaggle competition on chemical image-to-text translation.
 
 ![sample](https://i.postimg.cc/t4KqLMNC/inchi.jpg)
 
