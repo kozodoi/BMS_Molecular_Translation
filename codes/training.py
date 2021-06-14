@@ -1,6 +1,8 @@
 import timm
 from timm.utils import *
 
+from utilities import *
+
 import torch
 from torch.nn.utils.rnn import pad_sequence, pack_padded_sequence
 from tqdm import tqdm
