@@ -5,7 +5,10 @@ import numpy as np
 
 ####### PLOTTING
 
-def plot_results(trn_losses, val_scores, fold, CFG):
+def plot_results(trn_losses, 
+                 val_scores, 
+                 fold, 
+                 CFG):
 
     # plot loss lines
     plt.figure(figsize = (20, 8))

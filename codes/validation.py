@@ -89,7 +89,7 @@ def valid_epoch_with_beam_search(loader,
                 length     = other['topk_length'][b][0]
                 tgt_id_seq = [other['topk_sequence'][di][b, 0, 0].item() for di in range(length)]
                 seq_preds.append(tgt_id_seq)
-              
+    
         # transform preds
         text_preds = tokenizer.predict_captions(seq_preds)
         text_preds = [p.replace('<sos>', '') for p in text_preds]

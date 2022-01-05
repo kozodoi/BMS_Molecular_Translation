@@ -10,7 +10,16 @@ import gc
 
 ####### WRAPPER FUNCTION
 
-def run_fold(fold, df_trn, df_val, CFG, encoder, decoder, tokenizer, autocast, scaler, device):
+def run_fold(fold, 
+             df_trn, 
+             df_val, 
+             CFG, 
+             encoder, 
+             decoder, 
+             tokenizer, 
+             autocast, 
+             scaler, 
+             device):
 
     ##### PREPARATIONS
     

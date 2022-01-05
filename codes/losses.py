@@ -2,7 +2,10 @@
 
 import torch.nn as nn
 
-def get_losses(CFG, tokenizer, device, epoch = None):
+def get_losses(CFG, 
+               tokenizer, 
+               device, 
+               epoch = None):
 
     # training loss
     if CFG['loss_fn'] == 'CE':

@@ -4,7 +4,9 @@ import torch.optim as optim
 from adamp import AdamP
 from madgrad import MADGRAD
 
-def get_optimizer(CFG, model, eta):
+def get_optimizer(CFG, 
+                  model, 
+                  eta):
                    
     # scale learning rates
     if CFG['device'] == 'TPU':
@@ -42,7 +44,8 @@ from warmup_scheduler import GradualWarmupScheduler
 from torch.optim import lr_scheduler
 from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts, ReduceLROnPlateau
 
-def get_scheduler(CFG, optimizer):
+def get_scheduler(CFG, 
+                  optimizer):
     
     # scale learning rates
     if CFG['device'] == 'TPU':

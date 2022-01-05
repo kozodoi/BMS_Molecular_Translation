@@ -7,7 +7,9 @@ import torch
 import gc
 
 
-def get_model(CFG, device, pretrained = None):
+def get_model(CFG, 
+              device, 
+              pretrained = None):
         
     ##### INSTANTIATE MODEL
     

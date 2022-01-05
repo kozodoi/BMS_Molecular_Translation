@@ -186,7 +186,10 @@ def bms_collate(batch, tokenizer):
 
 ####### DATA PREP
 
-def get_data(df, fold, CFG, epoch = None):
+def get_data(df, 
+             fold, 
+             CFG, 
+             epoch = None):
     
     # epoch number
     if epoch is None:
@@ -198,6 +201,9 @@ def get_data(df, fold, CFG, epoch = None):
     if CFG['valid_subset']:
         df_valid = df_valid.head(CFG['valid_subset'])
     smart_print('- no. images: train - {}, valid - {}'.format(len(df_train), len(df_valid)), CFG)
+    
+    # checks
+    assert len(df_train) + len(df_valid) == len(df), 'Wrong number of observations'
         
     # extra data
     if CFG['data_ext']:
@@ -227,7 +233,11 @@ def get_data(df, fold, CFG, epoch = None):
 
 from utilities import *
 
-def get_loaders(df_train, df_valid, tokenizer, CFG, epoch = None):
+def get_loaders(df_train, 
+                df_valid, 
+                tokenizer, 
+                CFG, 
+                epoch = None):
 
     ##### EPOCH-BASED PARAMS
 
