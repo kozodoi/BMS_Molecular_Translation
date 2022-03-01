@@ -4,6 +4,10 @@ import albumentations as A
 from albumentations.pytorch import ToTensorV2
 
 def get_augs(CFG, image_size = None, p_aug = None):
+    
+    '''
+    Get train and test augmentations
+    '''
 
     # update epoch-based parameters
     if image_size is None:
@@ -11,7 +15,12 @@ def get_augs(CFG, image_size = None, p_aug = None):
     if p_aug is None:
         p_aug = CFG['p_aug']
         
-    # normalization fior RGB images
+    # tests
+    assert isinstance(CFG, dict), 'CFG has to be a dict with parameters'
+    assert 0 <= p_aug <= 1,       'p_aug has to be between 0 and 1'
+    assert image_size > 0,        'image_size has to be positive'
+        
+    # normalization for RGB images
     if CFG['num_channels'] == 3:
         if CFG['normalize']:
             if CFG['normalize'] == 'imagenet':

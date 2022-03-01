@@ -24,7 +24,14 @@ def train_epoch(loader,
                 epoch, 
                 CFG, 
                 device):
-       
+    
+    '''
+    Run training epoch
+    '''
+    
+    # tests
+    assert isinstance(CFG, dict), 'CFG has to be a dict with parameters'
+
     # switch regime
     encoder.train()
     decoder.train()

@@ -19,6 +19,10 @@ from augmentations import get_augs
 
 class ImageData(Dataset):
     
+    '''
+    Image train/validation dataset class
+    '''
+    
     def __init__(self, 
                  df, 
                  tokenizer  = None, 
@@ -91,6 +95,11 @@ class ImageData(Dataset):
         
         
 class ImageTestData(Dataset):
+    
+        
+    '''
+    Image test dataset class
+    '''
     
     def __init__(self, 
                  df, 
@@ -191,6 +200,15 @@ def get_data(df,
              CFG, 
              epoch = None):
     
+    '''
+    Get training and validation data
+    '''
+    
+    # tests
+    assert isinstance(df, pd.DataFrame), 'df has to be a pandas dataframe'
+    assert isinstance(fold,  int),       'fold has to be an integer'
+    assert isinstance(CFG, dict),        'CFG has to be a dict with parameters'
+    
     # epoch number
     if epoch is None:
         epoch = 0
@@ -238,9 +256,19 @@ def get_loaders(df_train,
                 tokenizer, 
                 CFG, 
                 epoch = None):
+    
+    '''
+    Get training and validation dataloaders
+    '''
+    
+    ##### PREPARATIONS
+    
+    # tests
+    assert isinstance(df_train, pd.DataFrame), 'df_train has to be a pandas dataframe'
+    assert isinstance(df_valid, pd.DataFrame), 'df_valid has to be a pandas dataframe'
+    assert isinstance(CFG, dict),              'CFG has to be a dict with parameters'
 
-    ##### EPOCH-BASED PARAMS
-
+    # epoch-based params
     image_size = CFG['image_size']
     p_aug      = CFG['p_aug']
 

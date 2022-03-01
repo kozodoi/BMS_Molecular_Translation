@@ -37,6 +37,7 @@ def smart_save(weights, path, CFG):
 
 # randomness
 def seed_everything(seed, CFG):
+    assert isinstance(seed, int), 'seed has to be an integer'
     os.environ['PYTHONHASHSEED'] = str(seed)
     random.seed(seed)
     np.random.seed(seed)

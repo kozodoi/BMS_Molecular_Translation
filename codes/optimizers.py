@@ -7,6 +7,13 @@ from madgrad import MADGRAD
 def get_optimizer(CFG, 
                   model, 
                   eta):
+    
+    '''
+    Get optimizer
+    '''
+    
+    # tests
+    assert isinstance(CFG, dict), 'CFG has to be a dict with parameters'
                    
     # scale learning rates
     if CFG['device'] == 'TPU':
@@ -46,6 +53,13 @@ from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts, ReduceLROnPlat
 
 def get_scheduler(CFG, 
                   optimizer):
+    
+    '''
+    Get scheduler
+    '''
+    
+    # tests
+    assert isinstance(CFG, dict), 'CFG has to be a dict with parameters'
     
     # scale learning rates
     if CFG['device'] == 'TPU':

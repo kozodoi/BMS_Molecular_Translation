@@ -19,6 +19,13 @@ def valid_epoch(loader,
                 CFG, 
                 device):
     
+    '''
+    Run validation epoch
+    '''
+    
+    # tests
+    assert isinstance(CFG, dict), 'CFG has to be a dict with parameters'
+    
     # switch regime
     encoder.eval()
     decoder.eval()
@@ -54,6 +61,13 @@ def valid_epoch_with_beam_search(loader,
                                  tokenizer, 
                                  CFG, 
                                  device):
+    
+    '''
+    Run validation epoch with beam search
+    '''
+    
+    # tests
+    assert isinstance(CFG, dict), 'CFG has to be a dict with parameters'
     
     # switch regime
     encoder.eval()

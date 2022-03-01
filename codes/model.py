@@ -10,8 +10,15 @@ import gc
 def get_model(CFG, 
               device, 
               pretrained = None):
+    
+    '''
+    Instantiate the model
+    '''
         
-    ##### INSTANTIATE MODEL
+    ##### ARCHITECTURE
+
+    # tests
+    assert isinstance(CFG, dict), 'CFG has to be a dict with parameters'
     
     # pretrained weights
     if pretrained is None:

@@ -6,6 +6,13 @@ def get_losses(CFG,
                tokenizer, 
                device, 
                epoch = None):
+    
+    '''
+    Get loss function
+    '''
+    
+    # tests
+    assert isinstance(CFG, dict), 'CFG has to be a dict with parameters'
 
     # training loss
     if CFG['loss_fn'] == 'CE':
