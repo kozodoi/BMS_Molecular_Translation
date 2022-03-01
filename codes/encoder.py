@@ -5,6 +5,10 @@ import timm
 
 class Encoder(nn.Module):
     
+    '''
+    Convolutional encoder network
+    '''
+    
     def __init__(self, backbone, num_channels = 3, pretrained = True):
         super().__init__()
         self.backbone = timm.create_model(model_name = backbone, 

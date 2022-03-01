@@ -2,6 +2,10 @@
 
 class Tokenizer(object):
     
+    '''
+    Tokenizer class
+    '''
+    
     def __init__(self):
         self.stoi = {}
         self.itos = {}
