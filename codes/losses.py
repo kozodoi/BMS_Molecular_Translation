@@ -8,7 +8,7 @@ def get_losses(CFG,
                epoch = None):
     
     '''
-    Get loss function
+    Get training and validation loss functions
     '''
     
     # tests
