@@ -14,7 +14,7 @@ def get_optimizer(CFG,
     
     # tests
     assert isinstance(CFG, dict), 'CFG has to be a dict with parameters'
-                   
+    
     # scale learning rates
     if CFG['device'] == 'TPU':
         eta     = eta            * xm.xrt_world_size()

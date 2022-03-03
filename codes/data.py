@@ -205,9 +205,9 @@ def get_data(df,
     '''
     
     # tests
-    assert isinstance(df, pd.DataFrame), 'df has to be a pandas dataframe'
-    assert isinstance(fold,  int),       'fold has to be an integer'
-    assert isinstance(CFG, dict),        'CFG has to be a dict with parameters'
+    assert isinstance(df,   pd.DataFrame), 'df has to be a pandas dataframe'
+    assert isinstance(fold, int),          'fold has to be an integer'
+    assert isinstance(CFG,  dict),         'CFG has to be a dict with parameters'
     
     # epoch number
     if epoch is None:
