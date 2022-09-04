@@ -4,6 +4,10 @@ Top-5% solution to the [BMS Molecular Translation](https://www.kaggle.com/c/bms-
 
 ![sample](https://i.postimg.cc/t4KqLMNC/inchi.jpg)
 
+- [Summary](#summary)
+- [Repo structure](#repo-structure)
+- [Working with the repo](#working-with-the-repo)
+
 
 ## Summary
 
@@ -16,7 +20,7 @@ My solution is an ensemble of seven CNN-LSTM Encoder-Decoder models implemented 
 ![models](https://i.postimg.cc/cLrTp1Pc/Screen-2021-06-04-at-10-17-02.jpg)
 
 
-## Project structure
+## Repo structure
 
 The project has the following structure:
 - `codes/`: `.py` main codes with data, model, training and inference modules
